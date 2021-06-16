@@ -1,0 +1,51 @@
+server:
+  port: 8008
+dubbo:
+  scan:
+    base-packages: com.springcloud.dubbo_provider.service
+  protocol:
+    name: dubbo
+    port: -1
+  registry:
+    address: spring-cloud://127.0.0.1
+  consumer:
+    filter: tracing
+  provider:
+    filter: tracing
+    parameters:
+      dcCode: dcCode2
+    tag: caofei888
+spring:
+  application:
+    name: dubbo-spring-cloud-provider
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 127.0.0.1:8848
+       # metadata:
+       #   version: v9
+        #namespace: 9889f769-178e-445d-bc2f-e3ac7fa383ce
+        #cluster-name: HZ
+  zipkin:
+    discoveryClientEnabled: false
+    base-url: http://127.0.0.1:9411/ # 指向地址
+    discovery-client-enabled: false # 让cloud将此连接当作是url，而不是服务名
+  sleuth:
+    sampler:
+      rate: 100
+  main:
+    allow-bean-definition-overriding: true
+##健康检查http://127.0.0.1:9091/actuator/health
+management:
+  endpoint:
+    dubbo:
+      enabled: true  #没卵用
+    health:
+      show-details: always
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  metrics:
+     tags:
+       application: ${spring.application.name}

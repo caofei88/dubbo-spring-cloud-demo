@@ -1,0 +1,34 @@
+server:
+  port: 8084
+dubbo:
+  protocol:
+    name: dubbo
+    port: -1
+  registry:
+    address: spring-cloud://127.0.0.1
+  cloud:
+    subscribed-services: dubbo-spring-cloud-provider
+  consumer:
+    check: false
+    loadbalance: "dcCode"    # 最小活跃数负载均衡
+    filter: tracing
+    timeout: 3000
+    retries: 0
+  provider:
+    filter: tracing
+spring:
+  application:
+    name: dubbo-spring-cloud-consumer
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 127.0.0.1:8848
+  zipkin:
+    discoveryClientEnabled: false
+    base-url: http://127.0.0.1:9411/ # 指向地址
+    discovery-client-enabled: false # 让cloud将此连接当作是url，而不是服务名
+  sleuth:
+    sampler:
+      rate: 100
+  main:
+    allow-bean-definition-overriding: true

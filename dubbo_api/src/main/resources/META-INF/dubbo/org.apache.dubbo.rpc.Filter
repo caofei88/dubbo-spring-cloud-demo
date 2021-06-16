@@ -1,0 +1,1 @@
+filter=com.springcloud.dubbo_provider.common.DubboTagProviderFilter

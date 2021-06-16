@@ -1,0 +1,1 @@
+provider=com.springcloud.dubbo_provider.common.ProviderLoadBalance

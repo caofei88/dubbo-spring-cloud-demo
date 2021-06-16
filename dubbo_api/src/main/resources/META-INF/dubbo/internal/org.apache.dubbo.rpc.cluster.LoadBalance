@@ -1,0 +1,2 @@
+myLoadBalance=com.springcloud.dubbo_api.loadBalance.CommonLoadBalance
+dcCode=com.springcloud.dubbo_api.loadBalance.DcCodeBalance
