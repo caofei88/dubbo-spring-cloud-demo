@@ -47,7 +47,8 @@ public class DcCodeBalance extends AbstractLoadBalance {
         }
         //排空
         if (list.size() == 0) {
-            throw new RuntimeException("没有provider的dcCode与之相对应");
+            log.info("没有provider的dcCode与之相对应,走默认轮询算法负载");
+            list.addAll(invokers);
         }
         //调用官方的random负载均衡方法
         return this.randomSelect(list, url, invocation);

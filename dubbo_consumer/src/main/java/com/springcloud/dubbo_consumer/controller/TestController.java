@@ -19,6 +19,9 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+import static org.apache.dubbo.common.constants.CommonConstants.TAG_KEY;
+import static org.apache.dubbo.rpc.Constants.FORCE_USE_TAG;
+
 /**
  * Created with IntelliJ IDEA.
  *
@@ -46,10 +49,12 @@ public class TestController {
 
     @GetMapping("/dubboTest/{tagParam}")
     public String dubboTest(@PathVariable("tagParam") String tagParam) {
-        RpcContext.getContext().setAttachment("dcCode", "dcCode2");
-        // RpcContext.getContext().setAttachment("dubbo.tag",tagParam);
+      /*  RpcContext.getContext().setAttachment(FORCE_USE_TAG, "true");
+        RpcContext.getContext().setAttachment(TAG_KEY, tagParam);*/
+         RpcContext.getContext().setAttachment("dcCode", tagParam);
+       // RpcContext.getContext().setAttachment("dubbo.tag",tagParam);
        // nacosDiscoveryProperties.getMetadata();
-        ServiceInstance serviceInstance = loadBalancerClient.choose("dubbo-spring-cloud-provider");
+       // ServiceInstance serviceInstance = loadBalancerClient.choose("dubbo-spring-cloud-provider");
         return helloService.hello("Dubbo test!");
     }
 
