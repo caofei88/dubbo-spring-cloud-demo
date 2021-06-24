@@ -23,7 +23,8 @@ public class HelloServiceI implements HelloService {
     @Override
     @ApiOperation(value = "测试1")
     public String hello(@ApiParam(value = "姓名")String name) {
-        String tag = RpcContext.getContext().getAttachment("dubbo.tag");
+        //String tag = RpcContext.getContext().getAttachment("dubbo.tag");
+        String tag = RpcContext.getContext().getAttachment("dcCode");
         log.info("tag:{}",tag);
         return "Hello provider2-->>dcCode2 666" + name;
     }
