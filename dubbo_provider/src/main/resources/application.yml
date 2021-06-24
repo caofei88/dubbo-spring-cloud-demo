@@ -18,7 +18,7 @@ dubbo:
    # tag: caofei888
 spring:
   application:
-    name: dubbo-test-provider6
+    name: dubbo-spring-cloud-provider
   cloud:
     nacos:
       discovery:
