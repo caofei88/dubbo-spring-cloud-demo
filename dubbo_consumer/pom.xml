@@ -21,6 +21,11 @@
     </properties>
 
     <dependencies>
+        <!-- web 启动类 -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
         <!-- API -->
         <dependency>
             <groupId>com.springcloud</groupId>

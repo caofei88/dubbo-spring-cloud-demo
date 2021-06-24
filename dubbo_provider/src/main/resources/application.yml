@@ -1,11 +1,12 @@
 server:
-  port: 8008
+  port: 8009
 dubbo:
   scan:
     base-packages: com.springcloud.dubbo_provider.service
   protocol:
     name: dubbo
-    port: -1
+    #port: -1
+    port: 20889
   registry:
     address: spring-cloud://127.0.0.1
   consumer:
@@ -14,10 +15,10 @@ dubbo:
     filter: tracing
     parameters:
       dcCode: dcCode2
-    tag: caofei888
+   # tag: caofei888
 spring:
   application:
-    name: dubbo-spring-cloud-provider
+    name: dubbo-test-provider6
   cloud:
     nacos:
       discovery:

@@ -10,7 +10,7 @@ dubbo:
     subscribed-services: dubbo-spring-cloud-provider
   consumer:
     check: false
-    loadbalance: "dcCode"    # 最小活跃数负载均衡
+    loadbalance: "dcCode"    # 最小活跃数负载均衡v
     filter: tracing
     timeout: 3000
     retries: 0

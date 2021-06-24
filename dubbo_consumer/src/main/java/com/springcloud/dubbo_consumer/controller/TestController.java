@@ -1,7 +1,11 @@
 package com.springcloud.dubbo_consumer.controller;
 
+import com.alibaba.cloud.dubbo.metadata.ServiceInfo;
+import com.alibaba.cloud.dubbo.metadata.repository.DubboServiceMetadataRepository;
+import com.alibaba.cloud.dubbo.service.DubboMetadataService;
 import com.alibaba.cloud.nacos.NacosDiscoveryProperties;
 import com.springcloud.dubbo_api.loadBalance.CommonLoadBalance;
+import com.springcloud.dubbo_api.loadBalance.SpringUtil;
 import com.springcloud.dubbo_api.service.HelloService;
 import com.springcloud.dubbo_consumer.feign.HelloFeign;
 import org.apache.dubbo.config.ReferenceConfig;
@@ -17,6 +21,7 @@ import org.springframework.cloud.client.discovery.DiscoveryClient;
 import org.springframework.cloud.client.loadbalancer.LoadBalancerClient;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 import static org.apache.dubbo.common.constants.CommonConstants.TAG_KEY;
@@ -49,12 +54,14 @@ public class TestController {
 
     @GetMapping("/dubboTest/{tagParam}")
     public String dubboTest(@PathVariable("tagParam") String tagParam) {
-      /*  RpcContext.getContext().setAttachment(FORCE_USE_TAG, "true");
+       /* RpcContext.getContext().setAttachment(FORCE_USE_TAG, "true");
         RpcContext.getContext().setAttachment(TAG_KEY, tagParam);*/
-         RpcContext.getContext().setAttachment("dcCode", tagParam);
+        RpcContext.getContext().setAttachment("dcCode", tagParam);
        // RpcContext.getContext().setAttachment("dubbo.tag",tagParam);
        // nacosDiscoveryProperties.getMetadata();
        // ServiceInstance serviceInstance = loadBalancerClient.choose("dubbo-spring-cloud-provider");
+        //HttpServletRequest request= SpringUtil.getBean(HttpServletRequest.class);
+        //DubboServiceMetadataRepository
         return helloService.hello("Dubbo test!");
     }
 
